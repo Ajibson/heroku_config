@@ -33,6 +33,7 @@ pip3 install dj-database-url
 
 #Now to be used put the following lines of code in settings.py file
 
+
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
@@ -84,3 +85,17 @@ pip3 freeze > requirements.txt
 #The runtime.txt file, if defined, tells Heroku which programming language to use. Create the file in the root of the repo and add the following text:
 
 python-3.8.6
+
+#for saving uploaded files by users 
+
+#First add the cloudinary adds-on to your heroku app
+# Second, click on the add-on o see it's configurations
+#put these configurations in the heroku environment 
+
+#put the lines of code below into the seetings.py file
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUD_NAME'),
+     'API_KEY': os.environ.get('API_KEY'),
+     'API_SECRET': os.environ.get('API_SECRET'),
+      }
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
